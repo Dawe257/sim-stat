@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: sim-stat
+  datasource:
+    url: jdbc:postgresql://postgres:5432/sim-stat
+    username: user
+    password: password
+  liquibase:
+    change-log: classpath:changelog/db.changelog-master.xml
