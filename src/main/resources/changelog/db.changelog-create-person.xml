@@ -7,15 +7,13 @@
 
     <changeSet author="dzhenetl" id="1">
 
-        <createTable tableName="example">
+        <createTable tableName="person">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="name" type="varchar">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
-            <column name="updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
         </createTable>
 
     </changeSet>
