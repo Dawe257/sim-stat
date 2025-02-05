@@ -6,4 +6,15 @@ services:
       - 'POSTGRES_USER=user'
       - 'POSTGRES_PASSWORD=password'
     ports:
-      - '5432'
+      - '5432:5432'
+  keycloak:
+    image: 'quay.io/keycloak/keycloak:26.0.7'
+    environment:
+      - 'KC_BOOTSTRAP_ADMIN_USERNAME=admin'
+      - 'KC_BOOTSTRAP_ADMIN_PASSWORD=admin'
+      - 'KEYCLOAK_IMPORT=/opt/keycloak/data/import/realm-config.json'
+    volumes:
+      - ./src/main/resources/keycloak/realm.json:/opt/keycloak/data/import/realm.json
+    command: start-dev --import-realm
+    ports:
+      - '8080:8080'

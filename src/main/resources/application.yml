@@ -1,3 +1,5 @@
+server.port: 8081
+
 spring:
   application:
     name: sim-stat
@@ -7,3 +9,23 @@ spring:
     password: password
   liquibase:
     change-log: classpath:changelog/db.changelog-master.xml
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: ${security.client-id}
+            scope: openid
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+        provider:
+          keycloak:
+            issuer-uri: ${security.keycloak-url}/realms/master
+
+security:
+  keycloak-url: http://localhost:8080
+  client-id: sim-stat
+  jwk-uri: ${security.keycloak-url}/realms/master/protocol/openid-connect/certs
+  public-endpoint:
+    /actuator/**,
+    /
